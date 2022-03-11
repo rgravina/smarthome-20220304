@@ -1,10 +1,7 @@
 package smarthome;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SmartHomeTest {
     private SmartHome smartHome;
@@ -16,17 +13,21 @@ class SmartHomeTest {
 
     @Test
     void whenSwitchIsOn_turnBulbOn() {
-        BulbSpy bulb = new BulbSpy();
+        BulbMock bulb = new BulbMock();
         Switch toggle = new AlwaysOnSwitchStub();
 
         smartHome.run(bulb, toggle);
 
-        assertTrue(bulb.turnOnWasCalled());
-        assertFalse(bulb.turnOffWasCalled());
+        bulb.switchCorrectlyTurnedOn();
     }
 
     @Test
-    @Disabled
     void whenSwitchIsOff_turnBulbOff() {
+        BulbMock bulb = new BulbMock();
+        Switch toggle = new AlwaysOffSwitchStub();
+
+        smartHome.run(bulb, toggle);
+
+        bulb.switchCorrectlyTurnedOff();
     }
 }
