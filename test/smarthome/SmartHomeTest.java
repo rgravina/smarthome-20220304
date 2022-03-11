@@ -1,6 +1,7 @@
 package smarthome;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,5 +22,11 @@ class SmartHomeTest {
         smartHome.run(bulb, toggle);
 
         assertTrue(bulb.turnOnWasCalled());
+        assertFalse(bulb.turnOffWasCalled());
+    }
+
+    @Test
+    @Disabled
+    void whenSwitchIsOff_turnBulbOff() {
     }
 }
